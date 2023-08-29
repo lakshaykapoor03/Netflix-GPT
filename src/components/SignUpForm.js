@@ -3,8 +3,12 @@ import { checkValidData } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
 
 const SignUpForm = () => {
   const [signIn, setSignIn] = useState(true);
@@ -12,6 +16,8 @@ const SignUpForm = () => {
   const fullname = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleButtonClick = () => {
     // console.log(fullname.current.value)
@@ -20,6 +26,7 @@ const SignUpForm = () => {
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
     if (message) return;
+ 
 
     if (!signIn) {
       createUserWithEmailAndPassword(
@@ -31,6 +38,30 @@ const SignUpForm = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
+          updateProfile(user, {
+            displayName: fullname.current.value,
+            photoURL: "https://avatars.githubusercontent.com/u/109919457?v=4",
+          })
+            .then(() => {
+              // Profile updated!
+              
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse");
+              // ...
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+              setErrorMessage(error.message);
+            });
           // ...
         })
         .catch((error) => {
@@ -49,6 +80,7 @@ const SignUpForm = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
+          navigate("/browse");
           // ...
         })
         .catch((error) => {
@@ -92,15 +124,14 @@ const SignUpForm = () => {
           id=""
           placeholder="Password"
         />
-       
-          <button
-            onClick={handleButtonClick}
-            className="bg-red-700 p-2 my-2 block w-80 rounded"
-          >
-         { !signIn ? "Sign Up" : "Sign In"}
-          </button>
-        
-        
+
+        <button
+          onClick={handleButtonClick}
+          className="bg-red-700 p-2 my-2 block w-80 rounded"
+        >
+          {!signIn ? "Sign Up" : "Sign In"}
+        </button>
+
         <p className="text-center text-lg font-bold text-red-700 my-2">
           {errorMessage}
         </p>
