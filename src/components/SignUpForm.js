@@ -6,7 +6,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 
@@ -16,7 +15,6 @@ const SignUpForm = () => {
   const fullname = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleButtonClick = () => {
@@ -54,7 +52,7 @@ const SignUpForm = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse");
+            
               // ...
             })
             .catch((error) => {
@@ -80,7 +78,7 @@ const SignUpForm = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse");
+          
           // ...
         })
         .catch((error) => {
