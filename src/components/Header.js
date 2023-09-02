@@ -48,7 +48,7 @@ const Header = () => {
   }, []);
   return (
     
-     <div className=" absolute flex justify-between items-center w-full  bg-gradient-to-b from-black">
+     <div className="z-10 absolute flex justify-between items-center w-full  bg-gradient-to-b from-black">
        
        <img
           className="w-56  m-2"
