@@ -18,9 +18,6 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   const handleButtonClick = () => {
-    // console.log(fullname.current.value)
-    console.log(email.current.value);
-    console.log(password.current.value);
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
     if (message) return;
@@ -35,7 +32,6 @@ const SignUpForm = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
           updateProfile(user, {
             displayName: fullname.current.value,
             photoURL: "https://avatars.githubusercontent.com/u/109919457?v=4",
@@ -77,7 +73,6 @@ const SignUpForm = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
           
           // ...
         })
