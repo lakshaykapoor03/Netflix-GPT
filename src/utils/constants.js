@@ -9,4 +9,6 @@ export const API_OPTIONS = {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZDQyZDUwYzBhYjEyYmJmM2Q5ODYyMDAyZTQ1NTYyYyIsInN1YiI6IjYzYTU0ZDFiZmQ2MzAwMDA3ZTZiNGRlMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.zs5OVZCtxgeNqmnN32u9QkD9pN_aWh3mJe3ylfk6WEE'
     }
   };
+
+  export const BG_URL= "https://assets.nflxext.com/ffe/siteui/vlv3/00103100-5b45-4d4f-af32-342649f1bda5/64774cd8-5c3a-4823-a0bb-1610d6971bd4/IN-en-20230821-popsignuptwoweeks-perspective_alpha_website_large.jpg"
   
