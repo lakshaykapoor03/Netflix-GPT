@@ -73,7 +73,7 @@ dispatch(toggleGptSearchView())
          {user && 
         <div className="flex items-center p-2">
           {showGptSearch&&<select name="" id="" className="p-2 m-2 bg-gray-900 text-white" onChange={handleLanguageChange}>
-            {SUPPORTED_LANGUAGES.map(lang=><option value={lang.identifier}>{lang.name}</option>)}
+            {SUPPORTED_LANGUAGES.map(lang=><option key={lang.identifier} value={lang.identifier}>{lang.name}</option>)}
           
           </select>}
           <button className="px-4 py-2 bg-blue-800 text-white rounded" onClick={handleGptSearchClick}>{showGptSearch?"Homepage":"GPT Search"}</button>
