@@ -9,7 +9,7 @@ const SignUpPage = () => {
   return (
     <div>
       <Header/>
-       <img className="" src={BG_URL} alt="" /> 
+       <img className="h-screen object-cover md:h-full" src={BG_URL} alt="" /> 
        <SignUpForm/>
        
     </div>

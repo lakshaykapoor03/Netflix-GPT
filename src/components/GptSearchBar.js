@@ -36,7 +36,7 @@ console.log(tmdbResults)
 
   }
   return (
-    <div className="pt-[10%]">
+    <div className=" pt-[50%] md:pt-[10%]">
     <form  className=" h-20 flex justify-center items-center bg-black " onSubmit={(e)=> e.preventDefault()}>
         <input className="px-4 py-3 w-1/2 rounded-l-md outline-none" type="text" ref={searchText} id="" placeholder={lang.en.gptSearchPlaceholder}/>
         <button className="bg-red-700 text-white px-4 py-3 rounded-r-md" onClick={handleGptSearchClick}>{lang.en.search}</button>

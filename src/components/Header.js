@@ -62,10 +62,10 @@ dispatch(toggleGptSearchView())
   }
   return (
     
-     <div className="z-10 absolute flex justify-between items-center w-full bg-gradient-to-b from-black">
+     <div className="bg-black md:bg-transparent flex-col md:flex-row z-10 absolute flex justify-between items-center w-full bg-gradient-to-b from-black">
        
        <img
-          className="w-56  m-2"
+          className="w-56 mx-auto md:mx-2"
           src={LOGO}
           alt="Logo"
         />

@@ -88,7 +88,8 @@ const SignUpForm = () => {
     setSignIn(!signIn);
   };
   return (
-    <div className="absolute top-[30vh] left-[40vw] text-white bg-black/75 py-6 px-8">
+    <div className="flex justify-center items-center">
+      <div className="absolute top-[30vh] md:left-[40vw] text-white bg-black/75  py-6 px-8">
       {!signIn ? (
         <h1 className="text-3xl font-bold">Sign Up</h1>
       ) : (
@@ -152,6 +153,7 @@ const SignUpForm = () => {
           </span>
         </p>
       )}
+    </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { createBrowserRouter, useNavigate } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
+import MovieDetails from "./components/MovieDetails";
 
 const appRouter = createBrowserRouter([
   {
@@ -15,6 +16,11 @@ const appRouter = createBrowserRouter([
     path: "/browse",
     element: <Browse />,
   },
+  {
+    path: "/movieDetails",
+    element: <MovieDetails />,
+  },
+  
 ]);
 
 function App() {
