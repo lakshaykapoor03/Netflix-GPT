@@ -6,7 +6,7 @@ const MovieCard = ({ posterPath }) => {
  
   if (!posterPath) return;
   return (
-    <Link to="/movieDetails">
+    // <Link to="/movieDetails">
     <div
       onClick={() => {
         console.log("first");
@@ -17,7 +17,8 @@ const MovieCard = ({ posterPath }) => {
         src={"https://image.tmdb.org/t/p/w500" + posterPath}
         alt="Movie Card"
       />
-    </div></Link>
+    </div>
+    // </Link>
   );
 };
 

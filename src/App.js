@@ -17,7 +17,7 @@ const appRouter = createBrowserRouter([
     element: <Browse />,
   },
   {
-    path: "/movieDetails",
+    path: "/movieinfo",
     element: <MovieDetails />,
   },
   
