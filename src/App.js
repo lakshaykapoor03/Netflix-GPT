@@ -6,6 +6,7 @@ import { RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import MovieDetails from "./components/MovieDetails";
+import Gemini from "./components/Gemini";
 
 const appRouter = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/movieinfo",
     element: <MovieDetails />,
+  },
+  {
+    path: "/gemini",
+    element: <Gemini />,
   },
   
 ]);
