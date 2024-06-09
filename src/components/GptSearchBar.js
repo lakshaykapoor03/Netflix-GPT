@@ -1,12 +1,17 @@
 import React from 'react'
 import {lang} from "../utils/languageConstants"
 import { useRef } from 'react'
-import openai from '../utils/openai'
+// import openai from '../utils/openai'
 import { API_OPTIONS } from '../utils/constants'
 import { useDispatch } from 'react-redux'
 import { addGptMovieResult } from '../utils/gptSlice'
+import { OPENAI_KEY } from '../utils/constants'
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const GptSearchBar = () => {
+
+  const genAI = new GoogleGenerativeAI (OPENAI_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"})
 const dispatch = useDispatch()
   const searchText= useRef(null)
   const searchMovieTMDB= async(movie)=>{
@@ -22,13 +27,17 @@ return json.results;
     console.log(searchText.current.value) 
 
     const gptQuery = "Act as a movie recommendation system and suggest some movie for the query"+ searchText.current.value + "only give me name of 5 movies, comma seperated like the example result given ahead.Example result : OMG2, Gadar, DON, Jawan etc"
-
-    const gptResults = await openai.chat.completions.create({
-    messages: [{ role: 'user', content: gptQuery }],
-    model: 'gpt-3.5-turbo',
-  });
-
-const gptMovies = gptResults.choices[0]?.message?.content.split(",");
+    const result = await model.generateContent(gptQuery);
+    const response = await result.response;
+    const text = response.text();
+    console.log(text);
+  //   const gptResults = await openai.chat.completions.create({
+  //   messages: [{ role: 'user', content: gptQuery }],
+  //   model: 'gpt-3.5-turbo',
+  // });
+  const gptMovies = text.split(', ').map(movie => movie.trim());
+// const gptMovies = gptResults.choices[0]?.message?.content.split(",");
+// const gptMovies = text;
 const data = gptMovies.map(movie=> searchMovieTMDB(movie))
 const tmdbResults =  await Promise.all(data)
 dispatch(addGptMovieResult({movieNames:gptMovies,movieResults:tmdbResults}))
